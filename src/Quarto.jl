@@ -112,7 +112,7 @@ function path()
   # check if the QuartoExt module is loaded
   ext = Base.get_extension(@__MODULE__, :QuartoExt)
   if !isnothing(ext)
-    return ext.quarto_bin
+    return ext.quarto_jll.quarto()
   end
   if (haskey(ENV, "QUARTO_PATH"))
     return ENV["QUARTO_PATH"]
