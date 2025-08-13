@@ -109,6 +109,11 @@ function metadata(input::AbstractString)
 end
 
 function path()
+  # check if the QuartoExt module is loaded
+  ext = Base.get_extension(@__MODULE__, :QuartoExt)
+  if !isnothing(ext)
+    return ext.quarto_bin
+  end
   if (haskey(ENV, "QUARTO_PATH"))
     return ENV["QUARTO_PATH"]
   else
